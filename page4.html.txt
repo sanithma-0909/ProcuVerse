@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - ProcuVERSE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            color: #1a1a1a;
+        }
+        
+        /* Hero */
+        .hero {
+            height: 60vh;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .hero:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: #DC2626;
+        }
+        
+        .hero h1 {
+            font-size: clamp(56px, 8vw, 120px);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            line-height: 0.85;
+            margin-bottom: 30px;
+        }
+        
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #999;
+        }
+        
+        /* Pricing Table */
+        .pricing {
+            background: white;
+            padding: 100px 40px;
+        }
+        
+        .pricing-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 4px solid #0a0a0a;
+        }
+        
+        .plan {
+            padding: 80px 50px;
+            position: relative;
+            border-right: 2px solid #0a0a0a;
+        }
+        
+        .plan:last-child {
+            border-right: none;
+        }
+        
+        .plan.featured {
+            background: #DC2626;
+            color: white;
+            transform: scale(1.02);
+            z-index: 2;
+            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.2);
+        }
+        
+        .featured .price,
+        .featured .plan-name {
+            color: white;
+        }
+        
+        .featured .feature-item {
+            border-bottom-color: rgba(255,255,255,0.2);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #0a0a0a;
+            color: white;
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .featured .badge {
+            background: white;
+            color: #DC2626;
+        }
+        
+        .plan-name {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        
+        .price {
+            font-size: 64px;
+            font-weight: 900;
+            color: #DC2626;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .period {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+        
+        .featured .period {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .features {
+            list-style: none;
+            margin-bottom: 50px;
+        }
+        
+        .feature-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-btn {
+            width: 100%;
+            padding: 20px;
+            background: #0a0a0a;
+            color: white;
+            border: 3px solid #0a0a0a;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .featured .cta-btn {
+            background: white;
+            color: #DC2626;
+            border-color: white;
+        }
+        
+        .cta-btn:hover {
+            background: transparent;
+            color: #0a0a0a;
+        }
+        
+        .featured .cta-btn:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        /* Comparison */
+        .comparison {
+            background: #f5f5f5;
+            padding: 100px 40px;
+        }
+        
+        .section-title {
+            font-size: clamp(40px, 5vw, 72px);
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -2px;
+        }
+        
+        .comparison-table {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border: 4px solid #0a0a0a;
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            border-bottom: 2px solid #0a0a0a;
+        }
+        
+        .table-row:last-child {
+            border-bottom: none;
+        }
+        
+        .table-header {
+            background: #0a0a0a;
+            color: white;
+        }
+        
+        .table-cell {
+            padding: 25px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 2px solid #0a0a0a;
+        }
+        
+        .table-cell:last-child {
+            border-right: none;
+        }
+        
+        .table-cell:first-child {
+            justify-content: flex-start;
+            font-weight: 600;
+        }
+        
+        .highlight {
+            background: #DC2626;
+            color: white;
+        }
+        
+        /* ROI Calculator */
+        .roi {
+            background: #0a0a0a;
+            color: white;
+            padding: 100px 40px;
+        }
+        
+        .roi-container {
+            max-width: 700px;
+            margin: 60px auto 0;
+            background: #1a1a1a;
+            padding: 60px;
+            border: 3px solid #DC2626;
+        }
+        
+        .roi-container input,
+        .roi-container select {
+            width: 100%;
+            padding: 18px;
+            margin-bottom: 20px;
+            background: #0a0a0a;
+            border: 2px solid #333;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .roi-container button {
+            width: 100%;
+            padding: 20px;
+            background: #DC2626;
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .result {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid #333;
+            text-align: center;
+        }
+        
+        .result-number {
+            font-size: 56px;
+            font-weight: 900;
+            color: #DC2626;
+            margin-bottom: 10px;
+        }
+        
+        .result-label {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            background: #DC2626;
+            color: white;
+            padding: 120px 40px;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: clamp(48px, 6vw, 96px);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+        
+        .final-cta p {
+            font-size: 20px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+        
+        .final-cta .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .final-cta button {
+            background: white;
+            color: #DC2626;
+            padding: 25px 50px;
+            border: 3px solid white;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .final-cta button:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        .trust {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 1024px) {
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .plan {
+                border-right: none;
+                border-bottom: 2px solid #0a0a0a;
+            }
+            
+            .plan:last-child {
+                border-bottom: none;
+            }
+            
+            .plan.featured {
+                transform: scale(1);
+            }
+            
+            .table-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-cell {
+                border-right: none;
+                border-bottom: 1px solid #e5e5e5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div>
+            <h1>PRICING</h1>
+            <p>Transparent pricing. Exceptional value. No hidden fees.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Table -->
+    <section class="pricing">
+        <div class="pricing-container">
+            <!-- Starter -->
+            <div class="plan">
+                <div class="plan-name">STARTER</div>
+                <div class="price">75K</div>
+                <div class="period">LKR / MONTH</div>
+                
+                <ul class="features">
+                    <li class="feature-item">✓ Up to 100 vendors</li>
+                    <li class="feature-item">✓ 5 user accounts</li>
+                    <li class="feature-item">✓ Basic chatbot onboarding</li>
+                    <li class="feature-item">✓ Essential compliance tracking</li>
+                    <li class="feature-item">✓ Standard approval workflows</li>
+                    <li class="feature-item">✓ Monthly reporting</li>
+                    <li class="feature-item">✓ Email support</li>
+                    <li class="feature-item">✓ 50GB data storage</li>
+                    <li class="feature-item">✓ Mobile app access</li>
+                </ul>
+                
+                <button class="cta-btn">Start Trial</button>
+            </div>
+            
+            <!-- Professional -->
+            <div class="plan featured">
+                <span class="badge">MOST POPULAR</span>
+                <div class="plan-name">PROFESSIONAL</div>
+                <div class="price">150K</div>
+                <div class="period">LKR / MONTH</div>
+                
+                <ul class="features">
+                    <li class="feature-item">✓ Up to 300 vendors</li>
+                    <li class="feature-item">✓ 15 user accounts</li>
+                    <li class="feature-item">✓ Advanced chatbot workflows</li>
+                    <li class="feature-item">✓ Comprehensive compliance</li>
+                    <li class="feature-item">✓ Multi-level approvals</li>
+                    <li class="feature-item">✓ Real-time analytics</li>
+                    <li class="feature-item">✓ 1 ERP integration</li>
+                    <li class="feature-item">✓ Priority support</li>
+                    <li class="feature-item">✓ 200GB data storage</li>
+                    <li class="feature-item">✓ Custom reports</li>
+                </ul>
+                
+                <button class="cta-btn">Start Trial</button>
+            </div>
+            
+            <!-- Enterprise -->
+            <div class="plan">
+                <div class="plan-name">ENTERPRISE</div>
+                <div class="price">CUSTOM</div>
+                <div class="period">ANNUAL CONTRACT</div>
+                
+                <ul class="features">
+                    <li class="feature-item">✓ Unlimited vendors</li>
+                    <li class="feature-item">✓ Unlimited users</li>
+                    <li class="feature-item">✓ Fully customizable chatbot</li>
+                    <li class="feature-item">✓ Advanced audit management</li>
+                    <li class="feature-item">✓ Complex workflow designer</li>
+                    <li class="feature-item">✓ Advanced analytics suite</li>
+                    <li class="feature-item">✓ Multiple ERP integrations</li>
+                    <li class="feature-item">✓ Dedicated success manager</li>
+                    <li class="feature-item">✓ 24/7 priority support</li>
+                    <li class="feature-item">✓ Unlimited storage</li>
+                    <li class="feature-item">✓ White-label options</li>
+                    <li class="feature-item">✓ SLA guarantees</li>
+                </ul>
+                
+                <button class="cta-btn">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison">
+        <h2 class="section-title">Why ProcuVERSE<br>Offers Superior Value</h2>
+        
+        <div class="comparison-table">
+            <div class="table-row table-header">
+                <div class="table-cell">FEATURE</div>
+                <div class="table-cell">PROCUVERSE</div>
+                <div class="table-cell">COMPETITOR A</div>
+                <div class="table-cell">COMPETITOR B</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="table-cell">Apparel Industry-Specific</div>
+                <div class="table-cell highlight">✓ YES</div>
+                <div class="table-cell">✗ NO</div>
+                <div class="table-cell">✗ NO</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="table-cell">AI Chatbot Onboarding</div>
+                <div class="table-cell highlight">✓ YES</div>
+                <div class="table-cell">✗ NO</div>
+                <div class="table-cell">LIMITED</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="table-cell">Sri Lankan Market Focus</div>
+                <div class="table-cell highlight">✓ YES</div>
+                <div class="table-cell">✗ NO</div>
+                <div class="table-cell">✗ NO</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="table-cell">Local Support Team</div>
+                <div class="table-cell highlight">✓ YES</div>
+                <div class="table-cell">✗ NO</div>
+                <div class="table-cell">✗ NO</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="table-cell">Free Trial</div>
+                <div class="table-cell highlight">30 DAYS</div>
+                <div class="table-cell">14 DAYS</div>
+                <div class="table-cell">✗ NO</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="table-cell">Setup Time</div>
+                <div class="table-cell highlight">4 WEEKS</div>
+                <div class="table-cell">12 WEEKS</div>
+                <div class="table-cell">8 WEEKS</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="table-cell">Starting Price</div>
+                <div class="table-cell highlight">LKR 75K</div>
+                <div class="table-cell">~LKR 180K</div>
+                <div class="table-cell">~LKR 150K</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="roi">
+        <h2 class="section-title">Calculate Your ROI</h2>
+        
+        <div class="roi-container">
+            <input type="number" placeholder="Current vendor count" id="vendors">
+            <input type="number" placeholder="Average onboarding time (days)" id="days">
+            <input type="number" placeholder="Number of procurement staff" id="staff">
+            <input type="number" placeholder="Average hourly staff cost (LKR)" id="cost">
+            <input type="number" placeholder="Failed audits per year" id="audits">
+            
+            <button onclick="calculateROI()">CALCULATE SAVINGS</button>
+            
+            <div class="result" id="result" style="display: none;">
+                <div class="result-number" id="savings">LKR 0</div>
+                <div class="result-label">ESTIMATED ANNUAL SAVINGS</div>
+                <p style="margin-top: 20px; color: #999; font-size: 14px;">Based on 40% time reduction and improved compliance</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>READY TO<br>GET STARTED?</h2>
+        <p>Start your 30-day free trial today. No credit card required.</p>
+        
+        <div class="btn-group">
+            <button>START FREE TRIAL</button>
+            <button>SCHEDULE DEMO</button>
+        </div>
+        
+        <div class="trust">
+            <span>✓ CANCEL ANYTIME</span>
+            <span>✓ NO HIDDEN FEES</span>
+            <span>✓ SETUP IN 1 DAY</span>
+        </div>
+    </section>
+
+    <script>
+        function calculateROI() {
+            const vendors = parseInt(document.getElementById('vendors').value) || 0;
+            const days = parseInt(document.getElementById('days').value) || 0;
+            const staff = parseInt(document.getElementById('staff').value) || 0;
+            const cost = parseInt(document.getElementById('cost').value) || 0;
+            const audits = parseInt(document.getElementById('audits').value) || 0;
+            
+            // Calculate time savings (40% reduction)
+            const timeSaved = (vendors * days * staff * cost * 0.4);
+            
+            // Calculate audit penalty avoidance (estimated LKR 500,000 per failed audit)
+            const auditSavings = audits * 500000;
+            
+            // Calculate fraud prevention savings (estimated 5% of vendor spend)
+            const fraudSavings = vendors * 50000;
+            
+            const totalSavings = timeSaved + auditSavings + fraudSavings;
+            
+            document.getElementById('savings').textContent = 'LKR ' + totalSavings.toLocaleString();
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

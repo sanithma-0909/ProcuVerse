@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProcuVERSE Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: white;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 40px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(60px, 8vw, 120px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 0.95;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 28px);
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            letter-spacing: 1px;
+        }
+        
+        .red-accent {
+            color: #DC2626;
+            border-left: 6px solid #DC2626;
+            padding-left: 20px;
+            display: inline-block;
+        }
+        
+        .cta-button {
+            background: #DC2626;
+            color: white;
+            padding: 20px 50px;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            background: #B91C1C;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+            border-left: 4px solid #DC2626;
+            padding-left: 30px;
+        }
+        
+        .stat-number {
+            font-size: 72px;
+            font-weight: 900;
+            color: #DC2626;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
+        /* Problem Section */
+        .problems {
+            background: #0a0a0a;
+            color: white;
+            padding: 120px 40px;
+        }
+        
+        .section-title {
+            font-size: clamp(40px, 5vw, 72px);
+            font-weight: 900;
+            margin-bottom: 80px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .problem-card {
+            background: #1a1a1a;
+            padding: 50px 40px;
+            border-top: 4px solid #DC2626;
+            transition: transform 0.3s;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .problem-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .problem-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .problem-card ul {
+            list-style: none;
+            font-size: 16px;
+            color: #999;
+        }
+        
+        .problem-card li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .problem-card li:before {
+            content: "—";
+            color: #DC2626;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Solution Section */
+        .solutions {
+            background: #f5f5f5;
+            padding: 120px 40px;
+        }
+        
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+            max-width: 1400px;
+            margin: 60px auto 0;
+        }
+        
+        .solution-card {
+            background: white;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: #DC2626;
+        }
+        
+        .solution-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .solution-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        /* Testimonial Section */
+        .testimonials {
+            background: white;
+            padding: 120px 40px;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 60px auto 0;
+        }
+        
+        .testimonial-card {
+            background: #0a0a0a;
+            color: white;
+            padding: 50px 40px;
+            position: relative;
+            border-left: 4px solid #DC2626;
+        }
+        
+        .quote {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .author {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .title {
+            font-size: 14px;
+            color: #999;
+            letter-spacing: 1px;
+        }
+        
+        /* CTA Section */
+        .final-cta {
+            background: #DC2626;
+            color: white;
+            padding: 120px 40px;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        
+        .final-cta p {
+            font-size: 24px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 18px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .form-container input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .form-container button {
+            width: 100%;
+            background: white;
+            color: #DC2626;
+            padding: 20px;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .form-container button:hover {
+            background: #0a0a0a;
+            color: white;
+        }
+        
+        .trust-elements {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .problem-grid,
+            .solution-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PROCUVERSE</h1>
+            <p class="hero-subtitle">Transform Your Vendor Management Process</p>
+            <p style="max-width: 800px; margin: 0 auto 50px; font-size: 18px; line-height: 1.8;">
+                Streamline vendor onboarding, ensure compliance, and eliminate operational inefficiencies. 
+                Sri Lanka's leading vendor management system for apparel manufacturers.
+            </p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stat-item">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">Faster Onboarding</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Compliance Ready</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">30%</div>
+            <div class="stat-label">Cost Reduction</div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="problems">
+        <h2 class="section-title">Are You Struggling With These Challenges?</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="problem-icon">📊</div>
+                <h3>Excel Chaos</h3>
+                <ul>
+                    <li>Spreadsheet errors</li>
+                    <li>Version conflicts</li>
+                    <li>Lost vendor information</li>
+                    <li>No audit trail</li>
+                </ul>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-icon">⏰</div>
+                <h3>Long Onboarding</h3>
+                <ul>
+                    <li>3-6 month cycles</li>
+                    <li>Manual document collection</li>
+                    <li>Delayed approvals</li>
+                    <li>Inefficient processes</li>
+                </ul>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-icon">⚠️</div>
+                <h3>Compliance Risks</h3>
+                <ul>
+                    <li>Failed buyer audits</li>
+                    <li>Missing certifications</li>
+                    <li>Regulatory penalties</li>
+                    <li>Buyer concerns</li>
+                </ul>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-icon">🔄</div>
+                <h3>Duplicate Vendors</h3>
+                <ul>
+                    <li>Fraud from duplicates</li>
+                    <li>Payment errors</li>
+                    <li>Database chaos</li>
+                    <li>No validation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions">
+        <h2 class="section-title" style="color: #0a0a0a;">One Platform. Complete Control.</h2>
+        <div class="solution-grid">
+            <div class="solution-card">
+                <h3>🤖 AI Chatbot Onboarding</h3>
+                <p>Automated vendor registration with minimal human intervention. Our intelligent chatbot guides vendors through compliance requirements, document uploads, and profile completion—reducing onboarding time from months to days.</p>
+            </div>
+            
+            <div class="solution-card">
+                <h3>📈 Real-Time Compliance</h3>
+                <p>Monitor vendor compliance status, certification expiry dates, and audit readiness at a glance. Automated alerts ensure you're always prepared for buyer audits and regulatory inspections.</p>
+            </div>
+            
+            <div class="solution-card">
+                <h3>🔗 Seamless ERP Integration</h3>
+                <p>Native integration with leading ERP systems ensures synchronized data across procurement, finance, and operations. No more manual data entry or information silos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title" style="color: #0a0a0a;">Trusted By Leading Manufacturers</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="quote">"ProcuVERSE reduced our vendor onboarding time by 42%. We now manage 500+ vendors with complete compliance visibility and zero audit failures."</p>
+                <div class="author">Priya Jayasuriya</div>
+                <div class="title">Procurement Manager, ABC Apparel</div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="quote">"The chatbot interface transformed our vendor registration process. What used to take 3 months now happens in 2 weeks with better data quality."</p>
+                <div class="author">Rohan Silva</div>
+                <div class="title">IT Director, Fashion Forward Exports</div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="quote">"Since implementing ProcuVERSE, we've eliminated vendor duplication fraud and saved over LKR 15 million annually."</p>
+                <div class="author">Kumari Fernando</div>
+                <div class="title">Supply Chain Director, Lanka Textiles</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="contact">
+        <h2>Ready To Transform?</h2>
+        <p>Join 50+ apparel manufacturers using ProcuVERSE</p>
+        
+        <div class="form-container">
+            <input type="text" placeholder="Company Name">
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Email Address">
+            <input type="tel" placeholder="Phone Number">
+            <select>
+                <option>Number of Vendors</option>
+                <option>&lt;50</option>
+                <option>50-100</option>
+                <option>100-300</option>
+                <option>300-500</option>
+                <option>500+</option>
+            </select>
+            <button>Schedule Demo</button>
+        </div>
+        
+        <div class="trust-elements">
+            <span>✓ NO CREDIT CARD</span>
+            <span>✓ 30-DAY TRIAL</span>
+            <span>✓ SETUP IN 2 WEEKS</span>
+        </div>
+    </section>
+</body>
+</html>

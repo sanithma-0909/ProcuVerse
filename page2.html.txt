@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - ProcuVERSE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            color: #1a1a1a;
+        }
+        
+        /* Hero */
+        .hero {
+            height: 70vh;
+            background: #DC2626;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(48px, 7vw, 96px);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .hero p {
+            font-size: clamp(18px, 2vw, 24px);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        /* Feature Sections */
+        .feature {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        
+        .feature-dark {
+            background: #0a0a0a;
+            color: white;
+        }
+        
+        .feature-light {
+            background: #f5f5f5;
+            color: #0a0a0a;
+        }
+        
+        .feature-image {
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            min-height: 600px;
+        }
+        
+        .feature-content {
+            padding: 80px 60px;
+        }
+        
+        .feature-number {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #DC2626;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .feature h2 {
+            font-size: clamp(36px, 4vw, 56px);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+        
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .feature p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .feature-dark p {
+            color: #ccc;
+        }
+        
+        .feature-light p {
+            color: #666;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+        
+        .feature-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(220, 38, 38, 0.2);
+            font-size: 16px;
+            letter-spacing: 1px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .feature-list li:before {
+            content: "→";
+            color: #DC2626;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .benefit-tag {
+            display: inline-block;
+            background: #DC2626;
+            color: white;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+        }
+        
+        /* Comparison Table */
+        .comparison {
+            background: white;
+            padding: 120px 40px;
+        }
+        
+        .comparison h2 {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -1px;
+        }
+        
+        .comparison-table {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #0a0a0a;
+            color: white;
+        }
+        
+        .table-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: #DC2626;
+            padding: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            padding: 25px 30px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        
+        .table-row:nth-child(even) {
+            background: #1a1a1a;
+        }
+        
+        /* CTA */
+        .cta {
+            background: #DC2626;
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: clamp(40px, 5vw, 72px);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        
+        .cta button {
+            background: white;
+            color: #DC2626;
+            padding: 25px 60px;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+        
+        .cta button:hover {
+            background: #0a0a0a;
+            color: white;
+        }
+        
+        @media (max-width: 968px) {
+            .feature {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-content {
+                padding: 60px 30px;
+            }
+            
+            .table-header,
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div>
+            <h1>POWERFUL<br>FEATURES</h1>
+            <p>From registration to performance monitoring—everything you need to manage vendors efficiently</p>
+        </div>
+    </section>
+
+    <!-- Feature 1 -->
+    <section class="feature feature-dark">
+        <div class="feature-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800');"></div>
+        <div class="feature-content">
+            <div class="feature-number">FEATURE 01</div>
+            <h2>INTELLIGENT<br>CHATBOT</h2>
+            <h3>Automated Vendor Registration</h3>
+            <p>Our AI-powered chatbot guides vendors through the entire onboarding process with zero manual intervention.</p>
+            <ul class="feature-list">
+                <li>Interactive document upload with validation</li>
+                <li>Real-time compliance checking</li>
+                <li>Multi-language support (Sinhala, Tamil, English)</li>
+                <li>24/7 vendor self-service capability</li>
+            </ul>
+            <span class="benefit-tag">40-60% TIME REDUCTION</span>
+        </div>
+    </section>
+
+    <!-- Feature 2 -->
+    <section class="feature feature-light">
+        <div class="feature-content">
+            <div class="feature-number">FEATURE 02</div>
+            <h2>CENTRALIZED<br>DATABASE</h2>
+            <h3>Single Source of Truth</h3>
+            <p>Consolidate all vendor information in one unified platform with instant access to critical data.</p>
+            <ul class="feature-list">
+                <li>Complete vendor profiles with documentation</li>
+                <li>Certification and license tracking</li>
+                <li>Performance ratings and historical data</li>
+                <li>Category and risk classification</li>
+            </ul>
+            <span class="benefit-tag">ZERO DUPLICATES</span>
+        </div>
+        <div class="feature-image" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800');"></div>
+    </section>
+
+    <!-- Feature 3 -->
+    <section class="feature feature-dark">
+        <div class="feature-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800');"></div>
+        <div class="feature-content">
+            <div class="feature-number">FEATURE 03</div>
+            <h2>COMPLIANCE<br>MANAGEMENT</h2>
+            <h3>Audit-Ready at All Times</h3>
+            <p>Never fail an audit again with comprehensive compliance tracking and automated alerts.</p>
+            <ul class="feature-list">
+                <li>Real-time compliance status monitoring</li>
+                <li>Certification expiry alerts (30/60/90 days)</li>
+                <li>Document version control</li>
+                <li>Complete audit trail for all activities</li>
+            </ul>
+            <span class="benefit-tag">100% AUDIT READY</span>
+        </div>
+    </section>
+
+    <!-- Feature 4 -->
+    <section class="feature feature-light">
+        <div class="feature-content">
+            <div class="feature-number">FEATURE 04</div>
+            <h2>APPROVAL<br>WORKFLOWS</h2>
+            <h3>Structured Multi-Level Approvals</h3>
+            <p>Configure custom approval workflows based on your organizational structure for faster decisions.</p>
+            <ul class="feature-list">
+                <li>Role-based approval hierarchies</li>
+                <li>Automated routing and escalation</li>
+                <li>Mobile approval capabilities</li>
+                <li>Bottleneck identification and analytics</li>
+            </ul>
+            <span class="benefit-tag">FASTER DECISIONS</span>
+        </div>
+        <div class="feature-image" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800');"></div>
+    </section>
+
+    <!-- Feature 5 -->
+    <section class="feature feature-dark">
+        <div class="feature-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800');"></div>
+        <div class="feature-content">
+            <div class="feature-number">FEATURE 05</div>
+            <h2>ANALYTICS &<br>REPORTING</h2>
+            <h3>Data-Driven Decision Support</h3>
+            <p>Transform vendor data into actionable insights with real-time dashboards and custom reports.</p>
+            <ul class="feature-list">
+                <li>Real-time KPI dashboards</li>
+                <li>Vendor performance scorecards</li>
+                <li>Onboarding velocity metrics</li>
+                <li>Automated scheduled reports</li>
+            </ul>
+            <span class="benefit-tag">STRATEGIC INSIGHTS</span>
+        </div>
+    </section>
+
+    <!-- Feature 6 -->
+    <section class="feature feature-light">
+        <div class="feature-content">
+            <div class="feature-number">FEATURE 06</div>
+            <h2>ERP<br>INTEGRATION</h2>
+            <h3>Seamless Data Synchronization</h3>
+            <p>Native integrations with leading business systems ensure data consistency across your organization.</p>
+            <ul class="feature-list">
+                <li>SAP, Oracle, Microsoft Dynamics</li>
+                <li>QuickBooks, Sage Accounting</li>
+                <li>Custom API integrations available</li>
+                <li>Real-time two-way data flow</li>
+            </ul>
+            <span class="benefit-tag">ZERO MANUAL ENTRY</span>
+        </div>
+        <div class="feature-image" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800');"></div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison">
+        <h2>PROCUVERSE VS<br>TRADITIONAL METHODS</h2>
+        
+        <div class="comparison-table">
+            <div class="table-header">
+                <div>FEATURE</div>
+                <div>MANUAL (EXCEL)</div>
+                <div>PROCUVERSE</div>
+            </div>
+            
+            <div class="table-row">
+                <div>Onboarding Time</div>
+                <div>3-6 months</div>
+                <div style="color: #DC2626; font-weight: 700;">2-4 weeks</div>
+            </div>
+            
+            <div class="table-row">
+                <div>Compliance Tracking</div>
+                <div>Manual spreadsheets</div>
+                <div style="color: #DC2626; font-weight: 700;">Automated real-time</div>
+            </div>
+            
+            <div class="table-row">
+                <div>Document Management</div>
+                <div>Email attachments</div>
+                <div style="color: #DC2626; font-weight: 700;">Centralized repository</div>
+            </div>
+            
+            <div class="table-row">
+                <div>Approval Process</div>
+                <div>Email chains</div>
+                <div style="color: #DC2626; font-weight: 700;">Automated workflows</div>
+            </div>
+            
+            <div class="table-row">
+                <div>Audit Readiness</div>
+                <div>Hours of preparation</div>
+                <div style="color: #DC2626; font-weight: 700;">Instant reports</div>
+            </div>
+            
+            <div class="table-row">
+                <div>Vendor Duplication</div>
+                <div>Common</div>
+                <div style="color: #DC2626; font-weight: 700;">Prevented</div>
+            </div>
+            
+            <div class="table-row">
+                <div>Mobile Access</div>
+                <div>No</div>
+                <div style="color: #DC2626; font-weight: 700;">Yes</div>
+            </div>
+            
+            <div class="table-row">
+                <div>Integration</div>
+                <div>Manual export/import</div>
+                <div style="color: #DC2626; font-weight: 700;">Real-time sync</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>EXPERIENCE THESE<br>FEATURES LIVE</h2>
+        <p style="font-size: 20px; margin-top: 20px; font-weight: 300;">See how ProcuVERSE transforms vendor management in a personalized demo</p>
+        <button>BOOK YOUR DEMO</button>
+    </section>
+</body>
+</html>
